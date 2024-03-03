@@ -26,7 +26,7 @@ class _NewTaskState extends State<NewTask> {
     var screen = MediaQuery.of(context).size;
     return AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        title: Text('New Task',
+        title: const Text('New Task',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 30,
@@ -52,17 +52,25 @@ class _NewTaskState extends State<NewTask> {
                       height: 50,
                       child: ElevatedButton(
                         onPressed: () {
-                          var task = db[widget.id]['tasks'];;
-                          
-                          // print(task);
-
-                          
-                          // task.add({
-                          //   "id":task.last['id'] + 1,
-                          //   "task-name": title.text,
-                          //   "status": false,
-                          // });
-                          // Navigator.pop(context);
+                          var newBaord = db[widget.id]['tasks'];
+                          if (newBaord.length == 0 ||
+                              newBaord is List<dynamic>) {
+                            newBaord.add({
+                              "id": 0,
+                              "task-name": title.text,
+                              "status": false,
+                            });
+                            Navigator.pop(context);
+                          } else {
+                            var taskList = db[widget.id]['tasks']
+                                as List<Map<String, Object>>;
+                            taskList.add({
+                              "id": db[widget.id]['tasks'].last['id'] + 1,
+                              "task-name": title.text,
+                              "status": false,
+                            });
+                            Navigator.pop(context);
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue,

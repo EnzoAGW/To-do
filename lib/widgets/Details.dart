@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:to_do/dataset.dart';
 import 'package:to_do/screens/Home.dart';
+import 'package:to_do/widgets/DeleteTask.dart';
 import 'package:to_do/widgets/NewTarsk.dart';
 
 class Details extends StatefulWidget {
@@ -24,10 +25,11 @@ class Details extends StatefulWidget {
 
 class _DetailsState extends State<Details> {
   var doneTasks = 0;
-  checkDobeTask() async {
-    print(widget.tasks.map((event) => {
+  checkDobeTask() {
+    widget.tasks.forEach((event) => {
           if (event['status'] == true) {doneTasks += 1}
-        }));
+        });
+    // print();
     // widget.tasks.map((e){print('CU');});
   }
 
@@ -67,8 +69,6 @@ class _DetailsState extends State<Details> {
                 })
           ],
           backgroundColor: Colors.transparent),
-
-      // bottomNavigationBar: ,
       body: Column(
         children: [
           ListTile(
@@ -138,6 +138,13 @@ class _DetailsState extends State<Details> {
                         size: 30,
                       ))),
               GestureDetector(
+                  onTap: () {
+                    showAdaptiveDialog(
+                        context: context,
+                        builder: (BuildContext context) => DeleteTask(
+                              id: widget.id,
+                            ));
+                  },
                   child: Padding(
                       padding: EdgeInsets.symmetric(vertical: 15),
                       child: Icon(

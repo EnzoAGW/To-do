@@ -25,7 +25,6 @@ class _HomeState extends State<Home> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          print(db[0]['category']);
         },
         backgroundColor: Colors.blue,
         child: const Text(

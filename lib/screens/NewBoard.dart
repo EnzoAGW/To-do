@@ -19,7 +19,7 @@ class _NewBoardState extends State<NewBoard> {
     var screen = MediaQuery.of(context).size;
     return AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        title: Text('New Board',
+        title: const Text('New Board',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 30,
@@ -31,7 +31,7 @@ class _NewBoardState extends State<NewBoard> {
           width: 200,
           child: ListView(
             shrinkWrap: true,
-            padding: EdgeInsets.symmetric(vertical: 20),
+            padding: const EdgeInsets.symmetric(vertical: 20),
             children: [
               Center(
                   child: DefaultInput(
@@ -39,7 +39,7 @@ class _NewBoardState extends State<NewBoard> {
                 label: 'Title',
               )),
               Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 20),
                   child: SizedBox(
                       width: screen.width - 70,
                       height: 50,

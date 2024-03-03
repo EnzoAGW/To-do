@@ -25,18 +25,18 @@ class _HomeCardState extends State<HomeCard> {
   bool checkedValue = false;
   var cl;
   var doneTasks = 0;
-  var colors = {
+  var colors = const {
     [Color.fromARGB(255, 161, 226, 196), Color.fromARGB(255, 3, 139, 74)],
     [Color.fromARGB(255, 255, 207, 180), Color.fromARGB(255, 255, 163, 111)],
     [Color.fromARGB(255, 208, 238, 248), Color.fromARGB(255, 87, 213, 255)],
     [Color.fromARGB(255, 255, 217, 225), Color.fromARGB(255, 255, 144, 167)]
   };
 
-  checkDobeTask() async {
-    print(widget.tasks.map((event) => {
+  checkDobeTask() {
+
+    widget.tasks.forEach((event) => {
           if (event['status'] == true) {doneTasks += 1}
-        }));
-    // widget.tasks.map((e){print('CU');});
+        });
   }
 
   @override
@@ -85,6 +85,7 @@ class _HomeCardState extends State<HomeCard> {
           children: <Widget>[
             ListView.builder(
                 shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
                 itemCount: widget.tasks.length,
                 itemBuilder: (_, idx) => CheckboxListTile(
                       activeColor: cl[1],
